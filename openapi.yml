@@ -1,0 +1,155 @@
+openapi: 3.0.3
+info:
+  title: Simple Calculator MCP
+  description: Servidor MCP básico para operaciones matemáticas
+  version: 1.0.0
+
+servers:
+  - url: https://api.ejemplo.com
+    description: Servidor principal
+
+paths:
+  /add:
+    post:
+      summary: Sumar dos números
+      operationId: add
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [a, b]
+              properties:
+                a:
+                  type: number
+                  example: 5
+                b:
+                  type: number
+                  example: 3
+      responses:
+        '200':
+          description: Resultado de la suma
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+
+  /subtract:
+    post:
+      summary: Restar dos números
+      operationId: subtract
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [a, b]
+              properties:
+                a:
+                  type: number
+                  example: 10
+                b:
+                  type: number
+                  example: 4
+      responses:
+        '200':
+          description: Resultado de la resta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+
+  /multiply:
+    post:
+      summary: Multiplicar dos números
+      operationId: multiply
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [a, b]
+              properties:
+                a:
+                  type: number
+                  example: 6
+                b:
+                  type: number
+                  example: 7
+      responses:
+        '200':
+          description: Resultado de la multiplicación
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+
+  /divide:
+    post:
+      summary: Dividir dos números
+      operationId: divide
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [a, b]
+              properties:
+                a:
+                  type: number
+                  example: 15
+                b:
+                  type: number
+                  example: 3
+      responses:
+        '200':
+          description: Resultado de la división
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+
+  /power:
+    post:
+      summary: Calcular potencia
+      operationId: power
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [base, exponent]
+              properties:
+                base:
+                  type: number
+                  example: 2
+                exponent:
+                  type: number
+                  example: 3
+      responses:
+        '200':
+          description: Resultado de la potencia
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+
+components:
+  schemas:
+    Result:
+      type: object
+      required: [result]
+      properties:
+        result:
+          type: number
+          description: Resultado de la operación
+          example: 8
+        operation:
+          type: string
+          description: Descripción de la operación
+          example: "5 + 3 = 8"
